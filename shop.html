@@ -1,253 +1,511 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shop - FA Perfume</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
-    * { font-family: 'Inter', sans-serif; }
-    .serif { font-family: 'Cormorant Garamond', serif; }
-  </style>
-</head>
-<body class="bg-gray-50">
-
-<!-- Navbar -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <a href="index.html" class="flex items-center gap-2">
-        <div class="w-9 h-9 bg-purple-700 rounded-xl flex items-center justify-center">
-          <span class="text-white font-bold text-lg" style="font-family:'Georgia',serif;">FA</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop - FA Perfume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap");
+      * {
+        font-family: "Inter", sans-serif;
+      }
+      .serif {
+        font-family: "Cormorant Garamond", serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navbar -->
+    <!-- Navbar di shop.html - ganti bagian nav yang lama -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="index.html" class="flex items-center gap-2">
+            <img
+              src="assets/logo.jpg"
+              alt="FA Perfume Logo"
+              class="w-11 h-11 object-contain rounded-xl"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+              "
+            />
+            <div
+              class="w-9 h-9 bg-purple-700 rounded-xl items-center justify-center"
+              style="display: none"
+            >
+              <span
+                class="text-white font-bold text-lg"
+                style="font-family: &quot;Georgia&quot;, serif"
+                >FA</span
+              >
+            </div>
+            <div class="hidden sm:block">
+              <span
+                class="font-bold text-gray-900 text-base leading-tight block"
+                >FA Perfume</span
+              >
+              <span class="text-purple-500 text-xs">Official Store</span>
+            </div>
+          </a>
+          <div class="hidden md:flex items-center gap-8">
+            <a
+              href="index.html"
+              class="text-gray-600 hover:text-purple-700 text-sm font-medium"
+              >Home</a
+            >
+            <a href="shop.html" class="text-purple-700 font-semibold text-sm"
+              >Shop</a
+            >
+            <a
+              href="#"
+              class="text-gray-600 hover:text-purple-700 text-sm font-medium"
+              >Collections</a
+            >
+          </div>
+          <div class="flex items-center gap-3">
+            <a
+              href="wishlist.html"
+              class="relative p-2 text-gray-600 hover:text-purple-700 transition-colors"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                />
+              </svg>
+              <span
+                class="wishlist-badge absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full items-center justify-center font-bold"
+                style="display: none; font-size: 10px"
+              ></span>
+            </a>
+            <a
+              href="cart.html"
+              class="relative p-2 text-gray-600 hover:text-purple-700 transition-colors"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                />
+              </svg>
+              <span
+                class="cart-badge absolute -top-1 -right-1 w-4 h-4 bg-purple-600 text-white text-xs rounded-full items-center justify-center font-bold"
+                style="display: none; font-size: 10px"
+              ></span>
+            </a>
+            <button
+              onclick="toggleMobileMenu()"
+              class="md:hidden p-2 text-gray-600"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
-        <div class="hidden sm:block">
-          <span class="font-bold text-gray-900 text-base leading-tight block">FA Perfume</span>
-          <span class="text-purple-500 text-xs">Official Store</span>
+        <div
+          id="mobileMenu"
+          class="md:hidden hidden bg-white border-t border-gray-100 pb-4 -mx-4 px-4"
+        >
+          <div class="flex flex-col gap-1 pt-2">
+            <a
+              href="index.html"
+              class="px-4 py-2 text-gray-700 hover:bg-purple-50 rounded-lg text-sm"
+              >Home</a
+            >
+            <a
+              href="shop.html"
+              class="px-4 py-2 text-purple-700 font-semibold rounded-lg text-sm"
+              >Shop</a
+            >
+          </div>
         </div>
-      </a>
-      <div class="hidden md:flex items-center gap-8">
-        <a href="index.html" class="text-gray-600 hover:text-purple-700 text-sm font-medium">Home</a>
-        <a href="shop.html" class="text-purple-700 font-semibold text-sm">Shop</a>
-        <a href="#" class="text-gray-600 hover:text-purple-700 text-sm font-medium">Collections</a>
       </div>
-      <div class="flex items-center gap-3">
-        <a href="wishlist.html" class="relative p-2 text-gray-600 hover:text-purple-700 transition-colors">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-          <span class="wishlist-badge absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full items-center justify-center font-bold" style="display:none;font-size:10px;"></span>
-        </a>
-        <a href="cart.html" class="relative p-2 text-gray-600 hover:text-purple-700 transition-colors">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-          <span class="cart-badge absolute -top-1 -right-1 w-4 h-4 bg-purple-600 text-white text-xs rounded-full items-center justify-center font-bold" style="display:none;font-size:10px;"></span>
-        </a>
-        <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-gray-600">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="pt-16 bg-gradient-to-r from-purple-50 to-indigo-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <p
+          class="text-purple-600 text-sm font-semibold uppercase tracking-widest mb-2"
+        >
+          FA Perfume
+        </p>
+        <h1 class="serif text-4xl sm:text-5xl font-semibold text-gray-900">
+          Our Collection
+        </h1>
+        <p class="text-gray-500 mt-2">
+          Temukan parfum inspired premium pilihan terbaik
+        </p>
       </div>
     </div>
-    <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-100 pb-4 -mx-4 px-4">
-      <div class="flex flex-col gap-1 pt-2">
-        <a href="index.html" class="px-4 py-2 text-gray-700 hover:bg-purple-50 rounded-lg text-sm">Home</a>
-        <a href="shop.html" class="px-4 py-2 text-purple-700 font-semibold rounded-lg text-sm">Shop</a>
-      </div>
-    </div>
-  </div>
-</nav>
 
-<!-- Page Header -->
-<div class="pt-16 bg-gradient-to-r from-purple-50 to-indigo-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <p class="text-purple-600 text-sm font-semibold uppercase tracking-widest mb-2">FA Perfume</p>
-    <h1 class="serif text-4xl sm:text-5xl font-semibold text-gray-900">Our Collection</h1>
-    <p class="text-gray-500 mt-2">Temukan parfum inspired premium pilihan terbaik</p>
-  </div>
-</div>
-
-<!-- Shop Content -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-  <!-- Search & Filter Bar -->
-  <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 mb-6">
-    <div class="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
-      <!-- Search -->
-      <div class="relative flex-1">
-        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        <input id="searchInput" type="text" placeholder="Cari parfum..." 
-               class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300 text-sm bg-gray-50"/>
-      </div>
-      <!-- Sort -->
-      <select id="sortSelect" class="px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300 text-sm bg-gray-50 text-gray-700 min-w-40">
-        <option value="default">Urutkan: Default</option>
-        <option value="price-asc">Harga: Terendah</option>
-        <option value="price-desc">Harga: Tertinggi</option>
-        <option value="rating">Rating Tertinggi</option>
-        <option value="popular">Terpopuler</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="flex gap-6">
-    <!-- Sidebar Filter -->
-    <aside class="hidden lg:block w-56 flex-shrink-0">
-      <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 sticky top-20">
-        <h3 class="font-semibold text-gray-900 mb-4 text-sm">Filter Kategori</h3>
-        <div class="space-y-2">
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="radio" name="catFilter" value="all" checked class="accent-purple-600" onchange="filterProducts()"/>
-            <span class="text-sm text-gray-700">Semua Produk</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="radio" name="catFilter" value="men" class="accent-purple-600" onchange="filterProducts()"/>
-            <span class="text-sm text-gray-700">👔 Men's Collection</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="radio" name="catFilter" value="women" class="accent-purple-600" onchange="filterProducts()"/>
-            <span class="text-sm text-gray-700">🌸 Women's Collection</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="radio" name="catFilter" value="unisex" class="accent-purple-600" onchange="filterProducts()"/>
-            <span class="text-sm text-gray-700">✨ Unisex</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="radio" name="catFilter" value="luxury" class="accent-purple-600" onchange="filterProducts()"/>
-            <span class="text-sm text-gray-700">💎 Luxury</span>
-          </label>
-        </div>
-        <hr class="my-4 border-gray-100"/>
-        <h3 class="font-semibold text-gray-900 mb-3 text-sm">Harga</h3>
-        <div class="space-y-2">
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="radio" name="priceFilter" value="all" checked class="accent-purple-600" onchange="filterProducts()"/>
-            <span class="text-sm text-gray-700">Semua Harga</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="radio" name="priceFilter" value="under50" class="accent-purple-600" onchange="filterProducts()"/>
-            <span class="text-sm text-gray-700">Di bawah Rp 50rb</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="radio" name="priceFilter" value="50-100" class="accent-purple-600" onchange="filterProducts()"/>
-            <span class="text-sm text-gray-700">Rp 50rb - 100rb</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="radio" name="priceFilter" value="over100" class="accent-purple-600" onchange="filterProducts()"/>
-            <span class="text-sm text-gray-700">Di atas Rp 100rb</span>
-          </label>
+    <!-- Shop Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Search & Filter Bar -->
+      <div
+        class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 mb-6"
+      >
+        <div
+          class="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center"
+        >
+          <!-- Search -->
+          <div class="relative flex-1">
+            <svg
+              class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Cari parfum..."
+              class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300 text-sm bg-gray-50"
+            />
+          </div>
+          <!-- Sort -->
+          <select
+            id="sortSelect"
+            class="px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300 text-sm bg-gray-50 text-gray-700 min-w-40"
+          >
+            <option value="default">Urutkan: Default</option>
+            <option value="price-asc">Harga: Terendah</option>
+            <option value="price-desc">Harga: Tertinggi</option>
+            <option value="rating">Rating Tertinggi</option>
+            <option value="popular">Terpopuler</option>
+          </select>
         </div>
       </div>
-    </aside>
 
-    <!-- Products -->
-    <div class="flex-1">
-      <!-- Mobile filter chips -->
-      <div class="flex flex-wrap gap-2 mb-4 lg:hidden">
-        <button onclick="setMobileCat('all')" id="mcat-all" class="cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-purple-700 text-white">Semua</button>
-        <button onclick="setMobileCat('men')" id="mcat-men" class="cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-white text-gray-600 border border-gray-200">👔 Men</button>
-        <button onclick="setMobileCat('women')" id="mcat-women" class="cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-white text-gray-600 border border-gray-200">🌸 Women</button>
-        <button onclick="setMobileCat('unisex')" id="mcat-unisex" class="cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-white text-gray-600 border border-gray-200">✨ Unisex</button>
-        <button onclick="setMobileCat('luxury')" id="mcat-luxury" class="cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-white text-gray-600 border border-gray-200">💎 Luxury</button>
-      </div>
-      
-      <div class="flex items-center justify-between mb-4">
-        <p id="productCount" class="text-sm text-gray-500"></p>
-      </div>
-      
-      <div id="product-grid" class="grid grid-cols-2 md:grid-cols-3 gap-4"></div>
-      
-      <!-- Empty state -->
-      <div id="emptyState" class="hidden text-center py-16">
-        <div class="text-6xl mb-4">🔍</div>
-        <h3 class="text-lg font-semibold text-gray-900 mb-2">Produk tidak ditemukan</h3>
-        <p class="text-gray-500 text-sm mb-4">Coba ubah kata kunci atau filter pencarian</p>
-        <button onclick="resetFilters()" class="bg-purple-700 text-white text-sm font-medium px-6 py-2.5 rounded-xl hover:bg-purple-800">Reset Filter</button>
+      <div class="flex gap-6">
+        <!-- Sidebar Filter -->
+        <aside class="hidden lg:block w-56 flex-shrink-0">
+          <div
+            class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 sticky top-20"
+          >
+            <h3 class="font-semibold text-gray-900 mb-4 text-sm">
+              Filter Kategori
+            </h3>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="catFilter"
+                  value="all"
+                  checked
+                  class="accent-purple-600"
+                  onchange="filterProducts()"
+                />
+                <span class="text-sm text-gray-700">Semua Produk</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="catFilter"
+                  value="men"
+                  class="accent-purple-600"
+                  onchange="filterProducts()"
+                />
+                <span class="text-sm text-gray-700">👔 Men's Collection</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="catFilter"
+                  value="women"
+                  class="accent-purple-600"
+                  onchange="filterProducts()"
+                />
+                <span class="text-sm text-gray-700">🌸 Women's Collection</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="catFilter"
+                  value="unisex"
+                  class="accent-purple-600"
+                  onchange="filterProducts()"
+                />
+                <span class="text-sm text-gray-700">✨ Unisex</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="catFilter"
+                  value="luxury"
+                  class="accent-purple-600"
+                  onchange="filterProducts()"
+                />
+                <span class="text-sm text-gray-700">💎 Luxury</span>
+              </label>
+            </div>
+            <hr class="my-4 border-gray-100" />
+            <h3 class="font-semibold text-gray-900 mb-3 text-sm">Harga</h3>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="priceFilter"
+                  value="all"
+                  checked
+                  class="accent-purple-600"
+                  onchange="filterProducts()"
+                />
+                <span class="text-sm text-gray-700">Semua Harga</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="priceFilter"
+                  value="under50"
+                  class="accent-purple-600"
+                  onchange="filterProducts()"
+                />
+                <span class="text-sm text-gray-700">Di bawah Rp 50rb</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="priceFilter"
+                  value="50-100"
+                  class="accent-purple-600"
+                  onchange="filterProducts()"
+                />
+                <span class="text-sm text-gray-700">Rp 50rb - 100rb</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="priceFilter"
+                  value="over100"
+                  class="accent-purple-600"
+                  onchange="filterProducts()"
+                />
+                <span class="text-sm text-gray-700">Di atas Rp 100rb</span>
+              </label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Products -->
+        <div class="flex-1">
+          <!-- Mobile filter chips -->
+          <div class="flex flex-wrap gap-2 mb-4 lg:hidden">
+            <button
+              onclick="setMobileCat('all')"
+              id="mcat-all"
+              class="cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-purple-700 text-white"
+            >
+              Semua
+            </button>
+            <button
+              onclick="setMobileCat('men')"
+              id="mcat-men"
+              class="cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-white text-gray-600 border border-gray-200"
+            >
+              👔 Men
+            </button>
+            <button
+              onclick="setMobileCat('women')"
+              id="mcat-women"
+              class="cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-white text-gray-600 border border-gray-200"
+            >
+              🌸 Women
+            </button>
+            <button
+              onclick="setMobileCat('unisex')"
+              id="mcat-unisex"
+              class="cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-white text-gray-600 border border-gray-200"
+            >
+              ✨ Unisex
+            </button>
+            <button
+              onclick="setMobileCat('luxury')"
+              id="mcat-luxury"
+              class="cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-white text-gray-600 border border-gray-200"
+            >
+              💎 Luxury
+            </button>
+          </div>
+
+          <div class="flex items-center justify-between mb-4">
+            <p id="productCount" class="text-sm text-gray-500"></p>
+          </div>
+
+          <div
+            id="product-grid"
+            class="grid grid-cols-2 md:grid-cols-3 gap-4"
+          ></div>
+
+          <!-- Empty state -->
+          <div id="emptyState" class="hidden text-center py-16">
+            <div class="text-6xl mb-4">🔍</div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Produk tidak ditemukan
+            </h3>
+            <p class="text-gray-500 text-sm mb-4">
+              Coba ubah kata kunci atau filter pencarian
+            </p>
+            <button
+              onclick="resetFilters()"
+              class="bg-purple-700 text-white text-sm font-medium px-6 py-2.5 rounded-xl hover:bg-purple-800"
+            >
+              Reset Filter
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- Footer -->
-<footer class="bg-gray-900 text-white py-8 mt-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-500">
-    <p>© 2026 FA Perfume Official Store. All rights reserved.</p>
-  </div>
-</footer>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-16">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-500"
+      >
+        <p>© 2026 FA Perfume Official Store. All rights reserved.</p>
+      </div>
+    </footer>
 
-<script src="data.js"></script>
-<script>
-  let mobileCat = 'all';
+    <script src="data.js"></script>
+    <script>
+      let mobileCat = "all";
 
-  function toggleMobileMenu() {
-    document.getElementById('mobileMenu').classList.toggle('hidden');
-  }
+      function toggleMobileMenu() {
+        document.getElementById("mobileMenu").classList.toggle("hidden");
+      }
 
-  function setMobileCat(cat) {
-    mobileCat = cat;
-    document.querySelectorAll('.cat-chip').forEach(c => {
-      c.className = 'cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-white text-gray-600 border border-gray-200';
-    });
-    document.getElementById('mcat-' + cat).className = 'cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-purple-700 text-white';
-    filterProducts();
-  }
+      function setMobileCat(cat) {
+        mobileCat = cat;
+        document.querySelectorAll(".cat-chip").forEach((c) => {
+          c.className =
+            "cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-white text-gray-600 border border-gray-200";
+        });
+        document.getElementById("mcat-" + cat).className =
+          "cat-chip px-3 py-1.5 rounded-full text-xs font-medium bg-purple-700 text-white";
+        filterProducts();
+      }
 
-  function filterProducts() {
-    const search = document.getElementById('searchInput').value.toLowerCase();
-    const sort = document.getElementById('sortSelect').value;
-    const catEl = document.querySelector('input[name="catFilter"]:checked');
-    const cat = catEl ? catEl.value : 'all';
-    const priceEl = document.querySelector('input[name="priceFilter"]:checked');
-    const price = priceEl ? priceEl.value : 'all';
-    
-    // Mobile overrides desktop cat
-    const activeCat = window.innerWidth < 1024 ? mobileCat : cat;
-    
-    let filtered = [...FA.products];
-    
-    if (activeCat !== 'all') filtered = filtered.filter(p => p.category === activeCat);
-    if (price === 'under50') filtered = filtered.filter(p => p.price < 50000);
-    if (price === '50-100') filtered = filtered.filter(p => p.price >= 50000 && p.price <= 100000);
-    if (price === 'over100') filtered = filtered.filter(p => p.price > 100000);
-    if (search) filtered = filtered.filter(p => p.name.toLowerCase().includes(search) || p.inspired.toLowerCase().includes(search));
-    
-    if (sort === 'price-asc') filtered.sort((a,b) => a.price - b.price);
-    if (sort === 'price-desc') filtered.sort((a,b) => b.price - a.price);
-    if (sort === 'rating') filtered.sort((a,b) => b.rating - a.rating);
-    if (sort === 'popular') filtered.sort((a,b) => b.reviews - a.reviews);
-    
-    const grid = document.getElementById('product-grid');
-    const empty = document.getElementById('emptyState');
-    const count = document.getElementById('productCount');
-    
-    count.textContent = `Menampilkan ${filtered.length} produk`;
-    
-    if (filtered.length === 0) {
-      grid.innerHTML = '';
-      empty.classList.remove('hidden');
-    } else {
-      empty.classList.add('hidden');
-      grid.innerHTML = filtered.map(p => FA.renderProductCard(p, '.')).join('');
-    }
-  }
+      function filterProducts() {
+        const search = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const sort = document.getElementById("sortSelect").value;
+        const catEl = document.querySelector('input[name="catFilter"]:checked');
+        const cat = catEl ? catEl.value : "all";
+        const priceEl = document.querySelector(
+          'input[name="priceFilter"]:checked',
+        );
+        const price = priceEl ? priceEl.value : "all";
 
-  function resetFilters() {
-    document.getElementById('searchInput').value = '';
-    document.getElementById('sortSelect').value = 'default';
-    document.querySelectorAll('input[name="catFilter"]')[0].checked = true;
-    document.querySelectorAll('input[name="priceFilter"]')[0].checked = true;
-    setMobileCat('all');
-    filterProducts();
-  }
+        // Mobile overrides desktop cat
+        const activeCat = window.innerWidth < 1024 ? mobileCat : cat;
 
-  // Auto-apply URL params
-  const urlParams = new URLSearchParams(window.location.search);
-  const catParam = urlParams.get('cat');
-  if (catParam) {
-    setMobileCat(catParam);
-    const radio = document.querySelector(`input[name="catFilter"][value="${catParam}"]`);
-    if (radio) radio.checked = true;
-  }
+        let filtered = [...FA.products];
 
-  document.getElementById('searchInput').addEventListener('input', filterProducts);
-  document.getElementById('sortSelect').addEventListener('change', filterProducts);
-  
-  filterProducts();
-</script>
-</body>
+        if (activeCat !== "all")
+          filtered = filtered.filter((p) => p.category === activeCat);
+        if (price === "under50")
+          filtered = filtered.filter((p) => p.price < 50000);
+        if (price === "50-100")
+          filtered = filtered.filter(
+            (p) => p.price >= 50000 && p.price <= 100000,
+          );
+        if (price === "over100")
+          filtered = filtered.filter((p) => p.price > 100000);
+        if (search)
+          filtered = filtered.filter(
+            (p) =>
+              p.name.toLowerCase().includes(search) ||
+              p.inspired.toLowerCase().includes(search),
+          );
+
+        if (sort === "price-asc") filtered.sort((a, b) => a.price - b.price);
+        if (sort === "price-desc") filtered.sort((a, b) => b.price - a.price);
+        if (sort === "rating") filtered.sort((a, b) => b.rating - a.rating);
+        if (sort === "popular") filtered.sort((a, b) => b.reviews - a.reviews);
+
+        const grid = document.getElementById("product-grid");
+        const empty = document.getElementById("emptyState");
+        const count = document.getElementById("productCount");
+
+        count.textContent = `Menampilkan ${filtered.length} produk`;
+
+        if (filtered.length === 0) {
+          grid.innerHTML = "";
+          empty.classList.remove("hidden");
+        } else {
+          empty.classList.add("hidden");
+          grid.innerHTML = filtered
+            .map((p) => FA.renderProductCard(p, "."))
+            .join("");
+        }
+      }
+
+      function resetFilters() {
+        document.getElementById("searchInput").value = "";
+        document.getElementById("sortSelect").value = "default";
+        document.querySelectorAll('input[name="catFilter"]')[0].checked = true;
+        document.querySelectorAll('input[name="priceFilter"]')[0].checked =
+          true;
+        setMobileCat("all");
+        filterProducts();
+      }
+
+      // Auto-apply URL params
+      const urlParams = new URLSearchParams(window.location.search);
+      const catParam = urlParams.get("cat");
+      if (catParam) {
+        setMobileCat(catParam);
+        const radio = document.querySelector(
+          `input[name="catFilter"][value="${catParam}"]`,
+        );
+        if (radio) radio.checked = true;
+      }
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", filterProducts);
+      document
+        .getElementById("sortSelect")
+        .addEventListener("change", filterProducts);
+
+      filterProducts();
+    </script>
+  </body>
 </html>
