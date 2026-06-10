@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile - FA Perfume</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+    * { font-family: 'Inter', sans-serif; }
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    .tab-active { border-bottom: 2px solid #5B4DBA; color: #5B4DBA; font-weight: 600; }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+<!-- Navbar -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-9 h-9 bg-purple-700 rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold text-lg" style="font-family:'Georgia',serif;">FA</span>
+        </div>
+        <div class="hidden sm:block">
+          <span class="font-bold text-gray-900 text-base leading-tight block">FA Perfume</span>
+          <span class="text-purple-500 text-xs">Official Store</span>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="text-gray-600 hover:text-purple-700 text-sm font-medium">Home</a>
+        <a href="shop.html" class="text-gray-600 hover:text-purple-700 text-sm font-medium">Shop</a>
+        <a href="profile.html" class="text-purple-700 font-semibold text-sm">Profile</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="wishlist.html" class="relative p-2 text-gray-600 hover:text-purple-700">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          <span class="wishlist-badge absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full items-center justify-center font-bold" style="display:none;font-size:10px;"></span>
+        </a>
+        <a href="cart.html" class="relative p-2 text-gray-600 hover:text-purple-700">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span class="cart-badge absolute -top-1 -right-1 w-4 h-4 bg-purple-600 text-white text-xs rounded-full items-center justify-center font-bold" style="display:none;font-size:10px;"></span>
+        </a>
+        <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-gray-600">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-100 pb-4 -mx-4 px-4">
+      <div class="flex flex-col gap-1 pt-2">
+        <a href="index.html" class="px-4 py-2 text-gray-700 hover:bg-purple-50 rounded-lg text-sm">Home</a>
+        <a href="shop.html" class="px-4 py-2 text-gray-700 hover:bg-purple-50 rounded-lg text-sm">Shop</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="pt-16">
+  <!-- Profile Header -->
+  <div class="bg-gradient-to-r from-purple-700 to-indigo-600 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex items-center gap-5">
+        <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center text-3xl font-bold border-2 border-white/40">
+          R
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold">Ridho Pratama</h1>
+          <p class="text-purple-200 text-sm mt-1">ridho@example.com · Member since 2025</p>
+          <div class="flex items-center gap-3 mt-2">
+            <span class="bg-white/20 text-white text-xs px-3 py-1 rounded-full font-medium">✨ Premium Member</span>
+            <span class="bg-white/20 text-white text-xs px-3 py-1 rounded-full">12 Orders</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="bg-white border-b border-gray-100 sticky top-16 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex gap-0 overflow-x-auto">
+        <button onclick="switchTab('info')" id="tab-info" class="px-5 py-4 text-sm text-gray-500 hover:text-purple-700 whitespace-nowrap transition-colors tab-active">
+          Informasi Pribadi
+        </button>
+        <button onclick="switchTab('address')" id="tab-address" class="px-5 py-4 text-sm text-gray-500 hover:text-purple-700 whitespace-nowrap transition-colors">
+          Alamat
+        </button>
+        <button onclick="switchTab('orders')" id="tab-orders" class="px-5 py-4 text-sm text-gray-500 hover:text-purple-700 whitespace-nowrap transition-colors">
+          Riwayat Pesanan
+        </button>
+        <button onclick="switchTab('wishlist')" id="tab-wishlist" class="px-5 py-4 text-sm text-gray-500 hover:text-purple-700 whitespace-nowrap transition-colors">
+          Wishlist
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Personal Info Tab -->
+    <div id="content-info" class="max-w-2xl">
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-6">
+        <h2 class="text-lg font-semibold text-gray-900 mb-5">Data Diri</h2>
+        <div class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">Nama Depan</label>
+              <input type="text" value="Ridho" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400"/>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-500 mb-1.5">Nama Belakang</label>
+              <input type="text" value="Pratama" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400"/>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-500 mb-1.5">Email</label>
+            <input type="email" value="ridho@example.com" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400"/>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-500 mb-1.5">Nomor HP</label>
+            <input type="tel" value="+62 812-3456-7890" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400"/>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-500 mb-1.5">Tanggal Lahir</label>
+            <input type="date" value="1999-05-15" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400"/>
+          </div>
+        </div>
+        <button onclick="FA.showToast('Profil berhasil disimpan!', 'success')" class="mt-6 bg-purple-700 text-white font-semibold px-8 py-3 rounded-xl hover:bg-purple-800 transition-colors text-sm">
+          Simpan Perubahan
+        </button>
+      </div>
+      <!-- Change Password -->
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+        <h2 class="text-lg font-semibold text-gray-900 mb-5">Ubah Password</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-medium text-gray-500 mb-1.5">Password Lama</label>
+            <input type="password" placeholder="••••••••" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400"/>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-500 mb-1.5">Password Baru</label>
+            <input type="password" placeholder="••••••••" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400"/>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-500 mb-1.5">Konfirmasi Password</label>
+            <input type="password" placeholder="••••••••" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-400"/>
+          </div>
+        </div>
+        <button onclick="FA.showToast('Password berhasil diubah!', 'success')" class="mt-6 bg-gray-900 text-white font-semibold px-8 py-3 rounded-xl hover:bg-gray-800 transition-colors text-sm">
+          Ubah Password
+        </button>
+      </div>
+    </div>
+
+    <!-- Address Tab -->
+    <div id="content-address" class="hidden max-w-2xl">
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-4">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="font-semibold text-gray-900 text-sm">Rumah</span>
+              <span class="bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded-full">Utama</span>
+            </div>
+            <p class="text-sm text-gray-700">Ridho Pratama · +62 812-3456-7890</p>
+            <p class="text-sm text-gray-500 mt-1">Jl. Merdeka No. 45, RT 03/RW 07, Kel. Kebayoran Lama, Kec. Kebayoran Lama, Kota Jakarta Selatan, DKI Jakarta 12230</p>
+          </div>
+          <button class="text-purple-600 text-sm font-medium hover:underline ml-4 whitespace-nowrap">Edit</button>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-4">
+        <div class="flex items-start justify-between">
+          <div>
+            <span class="font-semibold text-gray-900 text-sm">Kantor</span>
+            <p class="text-sm text-gray-700 mt-1">Ridho Pratama · +62 812-3456-7890</p>
+            <p class="text-sm text-gray-500 mt-1">Gedung Sudirman Tower Lt. 12, Jl. Jend. Sudirman Kav. 25, Jakarta Pusat 10220</p>
+          </div>
+          <button class="text-purple-600 text-sm font-medium hover:underline ml-4 whitespace-nowrap">Edit</button>
+        </div>
+      </div>
+      <button onclick="FA.showToast('Fitur tambah alamat segera hadir!', 'info')" class="w-full border-2 border-dashed border-purple-200 text-purple-600 font-medium py-4 rounded-2xl hover:bg-purple-50 transition-colors text-sm">
+        + Tambah Alamat Baru
+      </button>
+    </div>
+
+    <!-- Orders Tab -->
+    <div id="content-orders" class="hidden">
+      <div class="space-y-4">
+        <!-- Order Items -->
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+          <div class="flex items-center justify-between px-5 py-3 bg-gray-50 border-b border-gray-100">
+            <div>
+              <span class="text-xs text-gray-500">No. Pesanan</span>
+              <span class="text-sm font-semibold text-gray-900 ml-2">#FA2026001</span>
+            </div>
+            <span class="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">Selesai</span>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center gap-4">
+              <img src="assets/product1.jpg" alt="Black Opium" class="w-16 h-16 object-cover rounded-xl" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23ede9fe%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%235B4DBA%22 font-size=%2220%22>FA</text></svg>'"/>
+              <div class="flex-1">
+                <h4 class="font-semibold text-gray-900 text-sm">Black Opium</h4>
+                <p class="text-xs text-gray-500 mt-0.5">30ml · Qty: 1</p>
+                <p class="text-purple-700 font-bold text-sm mt-1">Rp 89.000</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
+              <div>
+                <p class="text-xs text-gray-500">Total Pembayaran</p>
+                <p class="font-bold text-gray-900">Rp 109.000</p>
+              </div>
+              <div class="flex gap-2">
+                <button onclick="FA.showToast('Membuka detail pesanan...', 'info')" class="border border-gray-200 text-gray-600 text-xs font-medium px-4 py-2 rounded-xl hover:bg-gray-50">Detail</button>
+                <button onclick="FA.addToCart(1)" class="bg-purple-600 text-white text-xs font-medium px-4 py-2 rounded-xl hover:bg-purple-700">Beli Lagi</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+          <div class="flex items-center justify-between px-5 py-3 bg-gray-50 border-b border-gray-100">
+            <div>
+              <span class="text-xs text-gray-500">No. Pesanan</span>
+              <span class="text-sm font-semibold text-gray-900 ml-2">#FA2026002</span>
+            </div>
+            <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">Dikirim</span>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center gap-4">
+              <img src="assets/product7.jpg" alt="Savage" class="w-16 h-16 object-cover rounded-xl" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23ede9fe%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%235B4DBA%22 font-size=%2220%22>FA</text></svg>'"/>
+              <div class="flex-1">
+                <h4 class="font-semibold text-gray-900 text-sm">Savage</h4>
+                <p class="text-xs text-gray-500 mt-0.5">100ml · Qty: 1</p>
+                <p class="text-purple-700 font-bold text-sm mt-1">Rp 89.000</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
+              <div>
+                <p class="text-xs text-gray-500">Total Pembayaran</p>
+                <p class="font-bold text-gray-900">Rp 109.000</p>
+              </div>
+              <div class="flex gap-2">
+                <button onclick="FA.showToast('Melacak pesanan...', 'info')" class="border border-gray-200 text-gray-600 text-xs font-medium px-4 py-2 rounded-xl hover:bg-gray-50">Lacak</button>
+                <button onclick="FA.addToCart(5)" class="bg-purple-600 text-white text-xs font-medium px-4 py-2 rounded-xl hover:bg-purple-700">Beli Lagi</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+          <div class="flex items-center justify-between px-5 py-3 bg-gray-50 border-b border-gray-100">
+            <div>
+              <span class="text-xs text-gray-500">No. Pesanan</span>
+              <span class="text-sm font-semibold text-gray-900 ml-2">#FA2026003</span>
+            </div>
+            <span class="bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full">Diproses</span>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center gap-4">
+              <img src="assets/product3.jpg" alt="Oud Royal" class="w-16 h-16 object-cover rounded-xl" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><rect fill=%22%23ede9fe%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%235B4DBA%22 font-size=%2220%22>FA</text></svg>'"/>
+              <div class="flex-1">
+                <h4 class="font-semibold text-gray-900 text-sm">Oud Royal</h4>
+                <p class="text-xs text-gray-500 mt-0.5">30ml · Qty: 2</p>
+                <p class="text-purple-700 font-bold text-sm mt-1">Rp 318.000</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
+              <div>
+                <p class="text-xs text-gray-500">Total Pembayaran</p>
+                <p class="font-bold text-gray-900">Rp 338.000</p>
+              </div>
+              <div>
+                <button onclick="FA.showToast('Membuka detail pesanan...', 'info')" class="border border-gray-200 text-gray-600 text-xs font-medium px-4 py-2 rounded-xl hover:bg-gray-50">Detail</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wishlist Tab -->
+    <div id="content-wishlist" class="hidden">
+      <div id="profileWishlistGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+      <div id="profileWishlistEmpty" class="hidden text-center py-16">
+        <p class="text-gray-500 mb-4">Belum ada produk di wishlist</p>
+        <a href="shop.html" class="inline-flex bg-purple-700 text-white font-semibold px-6 py-2.5 rounded-xl hover:bg-purple-800 transition-colors text-sm">Explore Shop</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white mt-16 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="flex items-center justify-center gap-2 mb-3">
+      <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
+        <span class="text-white font-bold" style="font-family:'Georgia',serif;">FA</span>
+      </div>
+      <span class="font-bold text-lg">FA Perfume</span>
+    </div>
+    <p class="text-gray-400 text-sm">© 2026 FA Perfume. Discover Your Signature Scent.</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+  }
+
+  function switchTab(tab) {
+    ['info','address','orders','wishlist'].forEach(t => {
+      document.getElementById('content-' + t).classList.add('hidden');
+      document.getElementById('tab-' + t).classList.remove('tab-active');
+      document.getElementById('tab-' + t).classList.add('text-gray-500');
+    });
+    document.getElementById('content-' + tab).classList.remove('hidden');
+    document.getElementById('tab-' + tab).classList.add('tab-active');
+    document.getElementById('tab-' + tab).classList.remove('text-gray-500');
+    if (tab === 'wishlist') renderWishlistTab();
+  }
+
+  function renderWishlistTab() {
+    const grid = document.getElementById('profileWishlistGrid');
+    const empty = document.getElementById('profileWishlistEmpty');
+    const ids = FA.wishlist;
+    if (ids.length === 0) { empty.classList.remove('hidden'); grid.innerHTML = ''; return; }
+    empty.classList.add('hidden');
+    const products = ids.map(id => FA.products.find(p => p.id === id)).filter(Boolean);
+    grid.innerHTML = products.map(p => FA.renderProductCard(p)).join('');
+  }
+</script>
+</body>
+</html>

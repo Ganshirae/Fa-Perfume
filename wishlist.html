@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wishlist - FA Perfume</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+    * { font-family: 'Inter', sans-serif; }
+    .serif { font-family: 'Cormorant Garamond', serif; }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+<!-- Navbar -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-9 h-9 bg-purple-700 rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold text-lg" style="font-family:'Georgia',serif;">FA</span>
+        </div>
+        <div class="hidden sm:block">
+          <span class="font-bold text-gray-900 text-base leading-tight block">FA Perfume</span>
+          <span class="text-purple-500 text-xs">Official Store</span>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="text-gray-600 hover:text-purple-700 text-sm font-medium">Home</a>
+        <a href="shop.html" class="text-gray-600 hover:text-purple-700 text-sm font-medium">Shop</a>
+        <a href="profile.html" class="text-gray-600 hover:text-purple-700 text-sm font-medium">Profile</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="wishlist.html" class="relative p-2 text-purple-700">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          <span class="wishlist-badge absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full items-center justify-center font-bold" style="display:none;font-size:10px;"></span>
+        </a>
+        <a href="cart.html" class="relative p-2 text-gray-600 hover:text-purple-700">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span class="cart-badge absolute -top-1 -right-1 w-4 h-4 bg-purple-600 text-white text-xs rounded-full items-center justify-center font-bold" style="display:none;font-size:10px;"></span>
+        </a>
+        <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-gray-600">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-100 pb-4 -mx-4 px-4">
+      <div class="flex flex-col gap-1 pt-2">
+        <a href="index.html" class="px-4 py-2 text-gray-700 hover:bg-purple-50 rounded-lg text-sm">Home</a>
+        <a href="shop.html" class="px-4 py-2 text-gray-700 hover:bg-purple-50 rounded-lg text-sm">Shop</a>
+        <a href="profile.html" class="px-4 py-2 text-gray-700 hover:bg-purple-50 rounded-lg text-sm">Profile</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="pt-16">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <nav class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+        <a href="index.html" class="hover:text-purple-700">Home</a>
+        <span>/</span>
+        <span class="text-gray-900 font-medium">Wishlist</span>
+      </nav>
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900">Wishlist Saya</h1>
+          <p class="text-gray-500 text-sm mt-1" id="wishlistCount">0 produk tersimpan</p>
+        </div>
+        <a href="shop.html" class="hidden sm:flex items-center gap-2 text-purple-700 text-sm font-medium hover:underline">
+          ← Lanjutkan Belanja
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Empty State -->
+    <div id="emptyWishlist" class="hidden text-center py-24">
+      <div class="w-24 h-24 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-12 h-12 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+      </div>
+      <h3 class="text-xl font-semibold text-gray-900 mb-2">Wishlist Kosong</h3>
+      <p class="text-gray-500 mb-6">Simpan produk favorit kamu di sini untuk dibeli nanti.</p>
+      <a href="shop.html" class="inline-flex bg-purple-700 text-white font-semibold px-8 py-3 rounded-2xl hover:bg-purple-800 transition-colors">
+        Explore Produk
+      </a>
+    </div>
+
+    <!-- Wishlist Grid -->
+    <div id="wishlistGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white mt-16 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="flex items-center justify-center gap-2 mb-3">
+      <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
+        <span class="text-white font-bold" style="font-family:'Georgia',serif;">FA</span>
+      </div>
+      <span class="font-bold text-lg">FA Perfume</span>
+    </div>
+    <p class="text-gray-400 text-sm">© 2026 FA Perfume. Discover Your Signature Scent.</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+  }
+
+  function renderWishlist() {
+    const wishlistIds = FA.wishlist;
+    const count = document.getElementById('wishlistCount');
+    const grid = document.getElementById('wishlistGrid');
+    const empty = document.getElementById('emptyWishlist');
+
+    count.textContent = `${wishlistIds.length} produk tersimpan`;
+
+    if (wishlistIds.length === 0) {
+      empty.classList.remove('hidden');
+      grid.innerHTML = '';
+      return;
+    }
+
+    empty.classList.add('hidden');
+    const products = wishlistIds.map(id => FA.products.find(p => p.id === id)).filter(Boolean);
+    grid.innerHTML = products.map(product => {
+      const discount = Math.round((1 - product.price / product.originalPrice) * 100);
+      return `
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden border border-gray-100">
+          <div class="relative overflow-hidden bg-gray-50 aspect-square">
+            <img src="${product.heroImage}" alt="${product.name}"
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect fill=%22%23ede9fe%22 width=%22400%22 height=%22400%22/><text x=%22200%22 y=%22200%22 text-anchor=%22middle%22 fill=%22%235B4DBA%22 font-size=%2260%22>FA</text></svg>'"/>
+            ${product.badge ? `<span class="absolute top-3 left-3 bg-purple-600 text-white text-xs font-semibold px-2 py-1 rounded-full">${product.badge}</span>` : ''}
+            <span class="absolute top-3 right-3 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">-${discount}%</span>
+          </div>
+          <div class="p-4">
+            <p class="text-xs text-purple-500 font-medium mb-1">${product.categoryLabel}</p>
+            <h3 class="font-semibold text-gray-900 text-base mb-1 truncate">${product.name}</h3>
+            <p class="text-xs text-gray-500 mb-2">Inspired by ${product.inspired}</p>
+            <div class="flex items-center gap-1 mb-3">
+              ${FA.renderStars(product.rating)}
+              <span class="text-xs text-gray-500 ml-1">(${product.reviews})</span>
+            </div>
+            <div class="mb-3">
+              <span class="text-purple-700 font-bold text-lg">${FA.formatPrice(product.price)}</span>
+              <span class="text-gray-400 text-xs line-through ml-2">${FA.formatPrice(product.originalPrice)}</span>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="removeFromWishlist(${product.id})" 
+                      class="p-2 border border-red-200 text-red-400 rounded-xl hover:bg-red-50 hover:text-red-500 transition-colors">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+              </button>
+              <a href="product-detail.html?id=${product.id}" 
+                 class="flex-1 text-center border border-purple-600 text-purple-600 text-sm font-medium py-2 rounded-xl hover:bg-purple-50 transition-colors">
+                Detail
+              </a>
+              <button onclick="FA.addToCart(${product.id})"
+                      class="flex-1 bg-purple-600 text-white text-sm font-medium py-2 rounded-xl hover:bg-purple-700 transition-colors">
+                + Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function removeFromWishlist(id) {
+    FA.wishlist = FA.wishlist.filter(wid => wid !== id);
+    FA.saveWishlist();
+    renderWishlist();
+  }
+
+  document.addEventListener('DOMContentLoaded', renderWishlist);
+</script>
+</body>
+</html>

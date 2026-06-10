@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keranjang - FA Perfume</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600&family=Inter:wght@300;400;500;600;700&display=swap');
+    * { font-family: 'Inter', sans-serif; }
+    .serif { font-family: 'Cormorant Garamond', serif; }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-9 h-9 bg-purple-700 rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold text-lg" style="font-family:'Georgia',serif;">FA</span>
+        </div>
+        <span class="hidden sm:block font-bold text-gray-900 text-base">FA Perfume</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="wishlist.html" class="relative p-2 text-gray-600 hover:text-purple-700">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          <span class="wishlist-badge absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full items-center justify-center font-bold" style="display:none;font-size:10px;"></span>
+        </a>
+        <a href="cart.html" class="relative p-2 text-purple-700">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span class="cart-badge absolute -top-1 -right-1 w-4 h-4 bg-purple-600 text-white text-xs rounded-full items-center justify-center font-bold" style="display:none;font-size:10px;"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="pt-16">
+  <div class="bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <h1 class="serif text-4xl font-semibold text-gray-900">Shopping Cart</h1>
+      <p id="cartCount" class="text-gray-500 text-sm mt-1"></p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div id="cartContent" class="grid lg:grid-cols-3 gap-8"></div>
+    <div id="emptyCart" class="hidden text-center py-20">
+      <div class="text-6xl mb-4">🛒</div>
+      <h3 class="text-xl font-bold text-gray-900 mb-2">Keranjang kosong</h3>
+      <p class="text-gray-500 text-sm mb-6">Tambahkan produk ke keranjang untuk melanjutkan</p>
+      <a href="shop.html" class="bg-purple-700 text-white font-semibold px-8 py-3 rounded-2xl hover:bg-purple-800 transition-colors">Mulai Belanja</a>
+    </div>
+  </div>
+</div>
+
+<footer class="bg-gray-900 text-white py-8 mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-500">
+    <p>© 2026 FA Perfume Official Store. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+  let discountCode = '';
+  let discountAmount = 0;
+
+  function renderCart() {
+    const cart = FA.cart;
+    const countEl = document.getElementById('cartCount');
+    const content = document.getElementById('cartContent');
+    const empty = document.getElementById('emptyCart');
+
+    countEl.textContent = `${cart.length} produk dalam keranjang`;
+
+    if (cart.length === 0) {
+      content.innerHTML = '';
+      empty.classList.remove('hidden');
+      return;
+    }
+    empty.classList.add('hidden');
+
+    const subtotal = FA.getCartTotal();
+    const shipping = subtotal > 150000 ? 0 : 15000;
+    const total = subtotal + shipping - discountAmount;
+
+    content.innerHTML = `
+      <div class="lg:col-span-2 space-y-4">
+        ${cart.map((item, idx) => {
+          const product = FA.products.find(p => p.id === item.id);
+          if (!product) return '';
+          return `
+          <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex gap-4 items-start">
+            <a href="product-detail.html?id=${item.id}">
+              <img src="${item.image}" alt="${item.name}" 
+                   class="w-20 h-20 object-cover rounded-xl flex-shrink-0 bg-gray-100"
+                   onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect fill=%22%23f3f4f6%22 width=%22200%22 height=%22200%22/></svg>'"/>
+            </a>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <a href="product-detail.html?id=${item.id}" class="font-semibold text-gray-900 text-sm hover:text-purple-700">${item.name}</a>
+                  <p class="text-xs text-gray-500 mt-0.5">Ukuran: ${item.size} · Inspired by ${product.inspired}</p>
+                </div>
+                <button onclick="removeItem(${idx})" class="text-gray-400 hover:text-red-500 transition-colors flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <div class="flex items-center gap-0 border border-gray-200 rounded-xl overflow-hidden">
+                  <button onclick="changeQty(${idx}, -1)" class="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-purple-50 text-sm font-bold">−</button>
+                  <span class="w-10 text-center text-gray-900 font-medium text-sm">${item.quantity}</span>
+                  <button onclick="changeQty(${idx}, 1)" class="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-purple-50 text-sm font-bold">+</button>
+                </div>
+                <p class="font-bold text-purple-700">${FA.formatPrice(item.price * item.quantity)}</p>
+              </div>
+            </div>
+          </div>
+          `;
+        }).join('')}
+      </div>
+
+      <!-- Order Summary -->
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 sticky top-20">
+          <h3 class="font-bold text-gray-900 text-lg mb-5">Order Summary</h3>
+          
+          <!-- Promo code -->
+          <div class="flex gap-2 mb-5">
+            <input id="promoInput" type="text" placeholder="Kode promo" 
+                   class="flex-1 px-3 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-300"/>
+            <button onclick="applyPromo()" class="bg-purple-100 text-purple-700 px-4 py-2 rounded-xl text-sm font-medium hover:bg-purple-200 transition-colors">Apply</button>
+          </div>
+          
+          <div class="space-y-3 mb-5 text-sm">
+            <div class="flex justify-between text-gray-600">
+              <span>Subtotal (${cart.reduce((s,i)=>s+i.quantity,0)} item)</span>
+              <span class="font-medium text-gray-900">${FA.formatPrice(subtotal)}</span>
+            </div>
+            <div class="flex justify-between text-gray-600">
+              <span>Ongkos Kirim</span>
+              <span class="font-medium ${shipping===0?'text-green-600':'text-gray-900'}">${shipping===0?'GRATIS':FA.formatPrice(shipping)}</span>
+            </div>
+            ${discountAmount > 0 ? `
+            <div class="flex justify-between text-green-600">
+              <span>Diskon Promo</span>
+              <span class="font-medium">−${FA.formatPrice(discountAmount)}</span>
+            </div>` : ''}
+            ${subtotal < 150000 ? `<p class="text-xs text-gray-400">Tambah ${FA.formatPrice(150000-subtotal)} lagi untuk gratis ongkir</p>` : `<p class="text-xs text-green-600">🎉 Kamu mendapat gratis ongkir!</p>`}
+          </div>
+          
+          <div class="border-t border-gray-100 pt-4 mb-5">
+            <div class="flex justify-between font-bold text-lg">
+              <span>Total</span>
+              <span class="text-purple-700">${FA.formatPrice(total)}</span>
+            </div>
+          </div>
+          
+          <a href="checkout.html" class="block w-full bg-purple-700 text-white text-center font-semibold py-3.5 rounded-2xl hover:bg-purple-800 transition-colors mb-3">
+            Proceed to Checkout →
+          </a>
+          <a href="shop.html" class="block w-full border border-gray-200 text-gray-600 text-center font-medium py-3 rounded-2xl hover:bg-gray-50 transition-colors text-sm">
+            Lanjut Belanja
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
+  function removeItem(idx) {
+    FA.cart.splice(idx, 1);
+    FA.saveCart();
+    renderCart();
+  }
+  window.removeItem = removeItem;
+
+  function changeQty(idx, delta) {
+    const item = FA.cart[idx];
+    const product = FA.products.find(p => p.id === item.id);
+    item.quantity = Math.max(1, Math.min(product?.stock || 99, item.quantity + delta));
+    FA.saveCart();
+    renderCart();
+  }
+  window.changeQty = changeQty;
+
+  function applyPromo() {
+    const code = document.getElementById('promoInput').value.toUpperCase().trim();
+    const codes = { 'FA10': 0.1, 'FA20': 0.2, 'WELCOME': 0.15 };
+    if (codes[code]) {
+      discountAmount = Math.round(FA.getCartTotal() * codes[code]);
+      FA.showToast(`Promo "${code}" berhasil! Diskon ${codes[code]*100}%`, 'success');
+      renderCart();
+    } else {
+      FA.showToast('Kode promo tidak valid', 'error');
+    }
+  }
+  window.applyPromo = applyPromo;
+
+  renderCart();
+</script>
+</body>
+</html>

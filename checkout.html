@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - FA Perfume</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600&family=Inter:wght@300;400;500;600;700&display=swap');
+    * { font-family: 'Inter', sans-serif; }
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    .payment-card.active { border-color: #5B4DBA; background: #f5f3ff; }
+    .payment-card.active .check-icon { display: flex; }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-9 h-9 bg-purple-700 rounded-xl flex items-center justify-center">
+          <span class="text-white font-bold text-lg" style="font-family:'Georgia',serif;">FA</span>
+        </div>
+        <span class="hidden sm:block font-bold text-gray-900 text-base">FA Perfume</span>
+      </a>
+      <div class="flex items-center gap-2 text-sm text-gray-500">
+        <span class="text-purple-700 font-semibold">Checkout</span>
+        <span>/ Secure</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="pt-16">
+  <div class="bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+        <a href="cart.html" class="hover:text-purple-700">Cart</a>
+        <span>›</span>
+        <span class="text-purple-700 font-semibold">Checkout</span>
+        <span>›</span>
+        <span>Konfirmasi</span>
+      </div>
+      <h1 class="serif text-4xl font-semibold text-gray-900">Checkout</h1>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- Left: Form -->
+      <div class="lg:col-span-2 space-y-6">
+        <!-- Customer Info -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <h2 class="font-bold text-gray-900 text-base mb-5 flex items-center gap-2">
+            <span class="w-7 h-7 bg-purple-100 text-purple-700 rounded-full text-xs font-bold flex items-center justify-center">1</span>
+            Informasi Pelanggan
+          </h2>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-semibold text-gray-700 mb-1.5">Nama Lengkap *</label>
+              <input id="fullName" type="text" placeholder="Masukkan nama lengkap" 
+                     class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300 text-sm"/>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1.5">Email *</label>
+              <input id="email" type="email" placeholder="email@example.com" 
+                     class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300 text-sm"/>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1.5">No. Telepon *</label>
+              <input id="phone" type="tel" placeholder="08xxxxxxxxxx" 
+                     class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300 text-sm"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping Address -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <h2 class="font-bold text-gray-900 text-base mb-5 flex items-center gap-2">
+            <span class="w-7 h-7 bg-purple-100 text-purple-700 rounded-full text-xs font-bold flex items-center justify-center">2</span>
+            Alamat Pengiriman
+          </h2>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-semibold text-gray-700 mb-1.5">Alamat Lengkap *</label>
+              <textarea id="address" rows="2" placeholder="Jl. Nama Jalan No. XX, RT/RW, Kelurahan" 
+                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300 text-sm resize-none"></textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1.5">Kota *</label>
+              <input id="city" type="text" placeholder="Jakarta, Surabaya, Bandung..." 
+                     class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300 text-sm"/>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1.5">Kode Pos *</label>
+              <input id="postalCode" type="text" placeholder="12345" 
+                     class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300 text-sm"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <h2 class="font-bold text-gray-900 text-base mb-5 flex items-center gap-2">
+            <span class="w-7 h-7 bg-purple-100 text-purple-700 rounded-full text-xs font-bold flex items-center justify-center">3</span>
+            Metode Pembayaran
+          </h2>
+          
+          <div class="grid grid-cols-3 sm:grid-cols-3 gap-3">
+            <!-- Banks -->
+            <div class="font-semibold text-xs text-gray-500 col-span-3 mb-1">Transfer Bank</div>
+            <button onclick="selectPayment('BCA', this)" class="payment-card border-2 border-gray-200 rounded-xl p-3 text-center hover:border-purple-400 transition-colors relative">
+              <div class="check-icon hidden absolute top-1 right-1 w-4 h-4 bg-purple-600 rounded-full items-center justify-center">
+                <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              </div>
+              <div class="text-2xl mb-1">🏦</div>
+              <p class="text-xs font-bold text-blue-700">BCA</p>
+            </button>
+            <button onclick="selectPayment('BRI', this)" class="payment-card border-2 border-gray-200 rounded-xl p-3 text-center hover:border-purple-400 transition-colors relative">
+              <div class="check-icon hidden absolute top-1 right-1 w-4 h-4 bg-purple-600 rounded-full items-center justify-center">
+                <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              </div>
+              <div class="text-2xl mb-1">🏦</div>
+              <p class="text-xs font-bold text-blue-800">BRI</p>
+            </button>
+            <button onclick="selectPayment('BNI', this)" class="payment-card border-2 border-gray-200 rounded-xl p-3 text-center hover:border-purple-400 transition-colors relative">
+              <div class="check-icon hidden absolute top-1 right-1 w-4 h-4 bg-purple-600 rounded-full items-center justify-center">
+                <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              </div>
+              <div class="text-2xl mb-1">🏦</div>
+              <p class="text-xs font-bold text-orange-600">BNI</p>
+            </button>
+            
+            <div class="font-semibold text-xs text-gray-500 col-span-3 mt-2 mb-1">E-Wallet</div>
+            <button onclick="selectPayment('DANA', this)" class="payment-card border-2 border-gray-200 rounded-xl p-3 text-center hover:border-purple-400 transition-colors relative">
+              <div class="check-icon hidden absolute top-1 right-1 w-4 h-4 bg-purple-600 rounded-full items-center justify-center">
+                <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              </div>
+              <div class="text-2xl mb-1">💙</div>
+              <p class="text-xs font-bold text-blue-500">DANA</p>
+            </button>
+            <button onclick="selectPayment('OVO', this)" class="payment-card border-2 border-gray-200 rounded-xl p-3 text-center hover:border-purple-400 transition-colors relative">
+              <div class="check-icon hidden absolute top-1 right-1 w-4 h-4 bg-purple-600 rounded-full items-center justify-center">
+                <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              </div>
+              <div class="text-2xl mb-1">💜</div>
+              <p class="text-xs font-bold text-purple-600">OVO</p>
+            </button>
+            <button onclick="selectPayment('QRIS', this)" class="payment-card border-2 border-gray-200 rounded-xl p-3 text-center hover:border-purple-400 transition-colors relative">
+              <div class="check-icon hidden absolute top-1 right-1 w-4 h-4 bg-purple-600 rounded-full items-center justify-center">
+                <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+              </div>
+              <div class="text-2xl mb-1">📱</div>
+              <p class="text-xs font-bold text-gray-700">QRIS</p>
+            </button>
+          </div>
+          <p id="selectedPaymentText" class="text-xs text-purple-600 font-medium mt-3 hidden">✓ Metode dipilih: <span id="selectedPaymentName"></span></p>
+        </div>
+      </div>
+
+      <!-- Right: Order Summary -->
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 sticky top-20">
+          <h3 class="font-bold text-gray-900 text-base mb-5">Ringkasan Pesanan</h3>
+          <div id="orderItems" class="space-y-3 mb-5 max-h-60 overflow-y-auto"></div>
+          <div class="border-t border-gray-100 pt-4 space-y-2 text-sm">
+            <div class="flex justify-between text-gray-600">
+              <span>Subtotal</span>
+              <span id="summarySubtotal" class="font-medium text-gray-900"></span>
+            </div>
+            <div class="flex justify-between text-gray-600">
+              <span>Ongkos Kirim</span>
+              <span id="summaryShipping" class="font-medium"></span>
+            </div>
+          </div>
+          <div class="border-t border-gray-100 mt-3 pt-3">
+            <div class="flex justify-between font-bold text-base">
+              <span>Total</span>
+              <span id="summaryTotal" class="text-purple-700"></span>
+            </div>
+          </div>
+          <button onclick="placeOrder()" class="w-full mt-5 bg-purple-700 text-white font-semibold py-3.5 rounded-2xl hover:bg-purple-800 transition-colors">
+            Place Order ✓
+          </button>
+          <p class="text-xs text-gray-400 text-center mt-3">🔒 Transaksi aman & terenkripsi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+  let selectedPayment = '';
+
+  function selectPayment(method, btn) {
+    selectedPayment = method;
+    document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('selectedPaymentName').textContent = method;
+    document.getElementById('selectedPaymentText').classList.remove('hidden');
+  }
+  window.selectPayment = selectPayment;
+
+  function renderSummary() {
+    const cart = FA.cart;
+    const subtotal = FA.getCartTotal();
+    const shipping = subtotal > 150000 ? 0 : 15000;
+    const total = subtotal + shipping;
+
+    document.getElementById('orderItems').innerHTML = cart.map(item => `
+      <div class="flex items-center gap-3">
+        <img src="${item.image}" class="w-12 h-12 object-cover rounded-lg bg-gray-100"
+             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect fill=%22%23f3f4f6%22 width=%22200%22 height=%22200%22/></svg>'"/>
+        <div class="flex-1 min-w-0">
+          <p class="text-xs font-medium text-gray-900 truncate">${item.name}</p>
+          <p class="text-xs text-gray-500">${item.size} × ${item.quantity}</p>
+        </div>
+        <p class="text-xs font-bold text-purple-700">${FA.formatPrice(item.price * item.quantity)}</p>
+      </div>
+    `).join('');
+
+    document.getElementById('summarySubtotal').textContent = FA.formatPrice(subtotal);
+    document.getElementById('summaryShipping').textContent = shipping === 0 ? 'GRATIS' : FA.formatPrice(shipping);
+    document.getElementById('summaryShipping').className = `font-medium ${shipping===0?'text-green-600':'text-gray-900'}`;
+    document.getElementById('summaryTotal').textContent = FA.formatPrice(total);
+  }
+
+  function placeOrder() {
+    const fullName = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const city = document.getElementById('city').value.trim();
+    const postal = document.getElementById('postalCode').value.trim();
+
+    if (!fullName || !email || !phone || !address || !city || !postal) {
+      FA.showToast('Mohon lengkapi semua informasi', 'error');
+      return;
+    }
+    if (!selectedPayment) {
+      FA.showToast('Pilih metode pembayaran', 'error');
+      return;
+    }
+
+    const orderNum = 'FA' + Date.now().toString().slice(-7);
+    localStorage.setItem('fa_last_order', JSON.stringify({ orderNum, fullName, payment: selectedPayment }));
+    FA.cart = [];
+    FA.saveCart();
+    window.location.href = `order-success.html?order=${orderNum}&name=${encodeURIComponent(fullName)}`;
+  }
+  window.placeOrder = placeOrder;
+
+  if (FA.cart.length === 0) {
+    window.location.href = 'cart.html';
+  } else {
+    renderSummary();
+  }
+</script>
+</body>
+</html>
